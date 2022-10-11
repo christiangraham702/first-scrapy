@@ -27,6 +27,7 @@ class ListCraigItem(scrapy.Item):
     pid = scrapy.Field()
     zip_code = scrapy.Field()
     dist_from_zip = scrapy.Field()
+    num_items = scrapy.Field()
 
 
 class ListCraigPids(scrapy.Item):

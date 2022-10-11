@@ -1,6 +1,7 @@
 import csv
 from enum import unique
 from os import link
+import scrapy
 
 
 def cleanFileData(ur_list):
@@ -37,14 +38,21 @@ def get_base_url(url):
                 break
         base_url += c
     return base_url
-    # if return_pids:
-    #     all_pids = []
-    #     for pid in csv_pids:
-    #         all_pids.append(pid[1])
-    #     unique_pids = set(all_pids)
-    #     return list(unique_pids)
-    # else:
-    #     links = []
-    #     for pid in csv_pids:
-    #         links.append(pid[0])
-    #     un set(links)
+
+
+def get_num_listings(x):
+    return None if x[:1] == '\n' else x
+
+
+def get_price(x):
+    if x:
+        return x.replace('$', '')
+    else:
+        return None
+
+
+def is_listings(response):
+    if response.xpath('//span[@class="totalcount"]/text()').get():
+        return True
+    else:
+        return False
